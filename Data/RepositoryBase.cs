@@ -1,0 +1,72 @@
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NBDecryptor.Data
+{
+    public abstract class RepositoryBase: IConfigRepository
+    {
+        public abstract string TableName { get; }
+        public RepositoryBase(string path)
+        {
+            DBPath = path;
+        }
+        public string DBPath { get; private set; }
+
+        public virtual int AddConfigValues(List<string> valueList)
+        {
+            using (var dataAccess = new DataAccess(DBPath))
+            {
+                var rowcount = Convert.ToInt32(dataAccess.ExecuteScalar(string.Format("SELECT COUNT(*) FROM {0}", TableName)));
+                string command = string.Empty;
+                if (rowcount > 0)
+                {
+                    command = string.Format("UPDATE {0} SET ValueList = @value1", TableName);
+                }
+                else
+                {
+                    command = string.Format("INSERT INTO {0}(ValueList) Values(@value1)", TableName);
+                }
+                var args = new Dictionary<string, object>
+                {
+                    { "@value1", JsonConvert.SerializeObject(valueList) }
+                };
+                return dataAccess.ExecuteSQL(command, args);
+            }
+        }
+
+
+
+        public virtual List<string> GetConfigValues()
+        {
+            List<string> retVal = null;
+            DataTable table = null;
+            using (var dataAccess = new DataAccess(DBPath))
+            {
+                table = dataAccess.ExecuteDataTable(string.Format("SELECT * FROM {0}", TableName));
+            }
+            if (table != null && table.Rows.Count > 0)
+            {
+                retVal = JsonConvert.DeserializeObject<List<string>>(Convert.ToString(table.Rows[0]["ValueList"].ToString()));
+            }
+            else
+            {
+                retVal = new List<string>();
+            }
+            return retVal;
+        }
+
+
+
+    }
+
+    interface IConfigRepository
+    {
+        List<string> GetConfigValues();
+        int AddConfigValues(List<string> valueList);
+    }
+}

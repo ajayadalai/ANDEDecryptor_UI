@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2016
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NBDecryptor", "NBDecryptor.csproj", "{C07599C4-CA06-49F3-B20E-7C0F1762F6B0}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ANDEDecryptorGUI", "ANDEDecryptorGUI\ANDEDecryptorGUI.vdproj", "{BC7E14C4-B347-4B1B-8878-8DF993A91565}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C07599C4-CA06-49F3-B20E-7C0F1762F6B0}.Debug|x86.ActiveCfg = Debug|x86
+		{C07599C4-CA06-49F3-B20E-7C0F1762F6B0}.Debug|x86.Build.0 = Debug|x86
+		{C07599C4-CA06-49F3-B20E-7C0F1762F6B0}.Release|x86.ActiveCfg = Release|x86
+		{C07599C4-CA06-49F3-B20E-7C0F1762F6B0}.Release|x86.Build.0 = Release|x86
+		{BC7E14C4-B347-4B1B-8878-8DF993A91565}.Debug|x86.ActiveCfg = Debug
+		{BC7E14C4-B347-4B1B-8878-8DF993A91565}.Release|x86.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1155596D-7F18-456A-AF16-FE19049760EB}
+	EndGlobalSection
+EndGlobal
